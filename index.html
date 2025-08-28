@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Poema para ti</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      transition: background 1s ease;
+    }
+
+    #quiz {
+      text-align: center;
+      font-size: 1.5rem;
+    }
+
+    .option {
+      display: inline-block;
+      margin: 20px;
+      padding: 10px 30px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 12px;
+      background: #eee;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .option:hover {
+      background: #ddd;
+    }
+
+    #poema {
+      display: none;
+      max-width: 700px;
+      max-height: 80vh;   /* controla altura */
+      overflow-y: auto;   /* scroll si se pasa */
+      text-align: center;
+      padding: 30px;
+      font-size: 1.2rem;
+      line-height: 1.8rem;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 20px;
+      box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
+      animation: fadeIn 2s ease forwards;
+      white-space: pre-line;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    @keyframes gradient {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    .bg-romantic {
+      background: linear-gradient(-45deg, #ff9a9e, #fecfef, #fcb69f, #ffdde1);
+      background-size: 400% 400%;
+      animation: gradient 10s ease infinite;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+  </style>
+</head>
+<body>
+  <div id="quiz">
+    <p>¿Cuánto es 1 + 1?</p>
+    <button class="option" onclick="checkAnswer('11')">11</button>
+    <button class="option" onclick="checkAnswer('2')">2</button>
+  </div>
+
+  <div id="poema"></div>
+
+  <script>
+    const poemaTexto = `
+    Tú, que con tu voz me cautivas,
+    y con tu risa me llenas de alegría,
+    te has convertido en mi aire,
+    mi fuente de vida, mi energía.
+
+
+
+    No sé cómo se pueden sentir
+    tantas cosas en tan poco tiempo,
+    pero soy consciente de lo que siento
+    y por qué mi corazón late por ti.
+
+
+
+    Mi gusto hacia ti es causado
+    por la forma tan hermosa en que me haces sentir,
+    y el brillo de tus hermosos ojos
+    que me cautivan como la miel a un oso.
+
+
+
+    Te pienso en cada momento y lugar,
+    estás en mi mente, en mi vida,
+    un rayo que ilumina mi noche tormentosa,
+    alguien que agradezco haber conocido y espero no perder.
+
+
+
+    Mi niña linda, ganar tu amor
+    se ha convertido en mi mayor ambición,
+    estoy seguro de que tu ser será mi complemento,
+    tus labios mi perdición y tu voz, la mejor canción.
+    `;
+
+    function checkAnswer(answer) {
+      if (answer === '11') {
+        document.body.classList.add("bg-romantic");
+        document.getElementById('quiz').style.display = 'none';
+        typeWriter(poemaTexto, 0);
+      } else if (answer === '2') {
+        alert("bot");
+      }
+    }
+
+    function typeWriter(text, i) {
+      if (i < text.length) {
+        document.getElementById("poema").style.display = "block";
+        document.getElementById("poema").innerHTML += text.charAt(i);
+        setTimeout(() => typeWriter(text, i + 1), 40);
+      }
+    }
+  </script>
+</body>
+</html>
